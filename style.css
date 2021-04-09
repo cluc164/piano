@@ -2,7 +2,9 @@
 body {
     cursor: default;
     background-color: rgb(201, 201, 201);
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
 
 .title {
     text-align: center;
@@ -26,56 +28,75 @@ body {
     margin: auto;
 
     background-color: rgb(100, 100, 105);
+    border-radius: 0 0 5px 5px;
 }
 
 
 .saved-container {
-    height: 210px;
+    height: 150px;
     width: 450px;
     margin:auto;
-    border-bottom: 30px solid transparent;
 }
 
 .list-container {
     background-color: white;
     border-color: rgb(94, 96, 106);
     overflow-y: auto;
-    height: 165px;
+    height: 100px;
     border-radius: 5px;
+}
+
+.usage {
+    width: fit-content;
+    margin: auto;
+    font-size: large;
+}
+
+#usage-text {
+    padding: 10px;
 }
 
 /* KEYBOARD CONTROLS */
 .piano-top {
+    display: flex;
+
     width: 100%;
     height: 90px;
 
     border-bottom: 2px solid black;
+
+    align-items: center;
 }
 
-.volume-bar {
-    width: 200px;
+.volume-bar, .time-bar {
+    width: 160px;
     height: 80px;
 
     margin: auto;
 }
 
-#volume-slider {
-    width: 100%;
-    margin: auto;
-    margin-top: 5px;
+input.middle:focus {
+    
 }
 
-#volume-slider {
+#volume-slider, #time-slider {
     -webkit-appearance: none;
     height: 5px;
     background: #eeeeee;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    outline-width: 0;
+    
+    margin: auto;
+    margin-top: 5px;
+    width: 100%;
+
+    cursor: pointer;
 }
 
 
-#volume-slider::-webkit-slider-thumb {
+#volume-slider::-webkit-slider-thumb, #time-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 15px;
@@ -85,17 +106,33 @@ body {
     cursor: pointer;
 }
 
-#volume-value, #volume-label {
+#volume-value, #volume-label, #time-value, #time-label {
     margin: auto;
     margin-top: 5px;
     font-size: x-large;
     font-weight: bold;
     width: fit-content;
-    color:rgb(201, 201, 201);
+    color:rgb(211, 211, 211);
+}
+
+.help-bar {
+    width: fit-content;
+    margin: auto;
+
+    border: solid 3px rgb(211, 211, 211);
+    color: rgb(211, 211, 211);
+
+    border-radius: 10px;
+}
+
+#help-text {
+    padding: 5px 20px;
+    font-weight: bold;
 }
 
 /* KEYBOARD KEYS */
 .piano-keys {
+    user-select: none;
     position: relative;
     width: 100%;
     height: 300px;
@@ -192,8 +229,9 @@ body {
 
 /* RECORDING CONTROLS */
 .buttonImage{
-    width: 65px;
-    height: 65px;
+    width: 40px;
+    height: 40px;
+    margin-left: -5px;
 }
 
 .buttonImage img{
@@ -203,8 +241,8 @@ body {
 }
 
 .buttons button {
-    width: 80px;
-    height: 80px;
+    width: 45px;
+    height: 45px;
     border-radius: 40px;
     
     margin-top: 10px;
@@ -228,18 +266,8 @@ body {
     margin: auto;
 }
 
-#recording {
-    color: red;
-}
-
-#playing {
-    color: rgb(64, 177, 64);
-    margin-top: -34px;
-}
-
-#saved {
-    color: rgb(216, 216, 216);
-    margin-top: -34px;
+#info {
+    
 }
 
 .saved-bar {
@@ -268,23 +296,66 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 5px;
-  }
+  width: 10px;
+  /* border-radius: 5px; */
+}
   
   /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    border-radius: 5px;
-  }
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  /* border-radius: 5px; */
+}
    
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 5px;
-  }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(182, 182, 182); 
+  /* border-radius: 5px; */
+}
   
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(65, 65, 65); 
+}
+
+/* 
+RADIO BUTTONS
+$bg: #332f35;
+$fg: lighten(#332f35,20%);
+$borderWidth: 3px; 
+*/
+
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+label {
+  color: rgb(211, 211, 211);
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 20px;
+}
+
+input[type=radio]:checked + label{
+  color: rgb(52, 53, 58);
+  background: rgb(211, 211, 211);
+}
+
+label + input[type=radio] + label {
+    border-left: solid 3px rgb(211, 211, 211);
+    /* float:left; */
+}
+
+input[type=radio] + label {
+    margin-left: -4px;
+}
+
+.radio-group {
+  border: solid 3px rgb(211, 211, 211);
+  display: inline-block;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}

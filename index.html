@@ -1,9 +1,11 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="audiosynth.js"></script>
+        <script src="audiosynth/audiosynth.js"></script>
         <script type="text/javascript" src="page.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
         <title>BasementPiano</title>
         <link rel="icon" type="image/png" href="images/piano.png">
     </head>
@@ -12,15 +14,30 @@
     </header>
 
     <body>
-        <div class="title">Basement Piano</div>
-        <br>
+        <div class="usage">
+            <div id="usage-text">Play notes with a mouse or by pressing the keys on your keyboard!</div>
+        </div>
         <div class="piano-container">
             <div class="piano-top">
                 <div class="volume-bar">
                     <div id="volume-label">Volume</div>
-                    <input id="volume-slider" class="volume" type="range" oninput=setVolume(this.value)>
+                    <input id="volume-slider" min="0" max="100" class="volume" type="range" oninput=setVolume(this.value)>
                     <div id="volume-value">50%</div>
                 </div>
+                <div class="time-bar">
+                    <div id="time-label">Note Length</div>
+                    <input id="time-slider" min="0.5" max="3" step="0.5" class="time" type="range" oninput=setTime(this.value)>
+                    <div id="time-value">2</div>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="option-p" checked="true" name="selector"><label class="synth-type" id="piano" for="option-p">Piano</label>
+                    <input type="radio" id="option-o" name="selector"><label class="synth-type" id="organ" for="option-o">Organ</label>
+                    <input type="radio" id="option-a" name="selector"><label class="synth-type" id="acoustic" for="option-a">Guitar</label>
+                    <input type="radio" id="option-s" name="selector"><label class="synth-type" id="edm" for="option-s">Synth</label>
+                </div>
+                <!-- <div class="help-bar">
+                    <div id="help-text">Help</div>
+                </div> -->
             </div>
             <div class="piano-keys">
                 <div class="naturals">
@@ -64,7 +81,7 @@
                     </div>
                 </button>
             </div>
-            <div class="recording-label" id="info">To Record, Enter Song Name Below</div>
+            <div class="recording-label" id="info" style="visibility: hidden;">Filler</div>
             <!-- <div class="recording-label" id="recording">Recording</div>
             <div class="recording-label" id="playing">Playing</div>
             <div class="recording-label" id="saved">Recording Saved</div> -->

@@ -5,7 +5,8 @@ var piano;
 var recordingStart, recordingLength; 
 
 // Global variables used to handle recording
-var recordingName = "";
+var loadedRecordingName = "";
+var enteredRecordingName = "";
 var recordingID;
 var recording = false;
 var playing = false;
@@ -17,6 +18,8 @@ var intervalStart, intervalEnd;
 // (see playNextNote())
 var savedRecording = [];
 var copiedRecording = [];
+
+var noteLength;
 
 var songs = [
     {name: "odeToJoy", data: `[{"key":"G-4","time":743},{"key":"B-4","time":21},{"key":"D-4","time":219},{"key":"G-4","time":241},{"key":"B-4","time":19},{"key":"D-4","time":219},{"key":"A-4","time":242},{"key":"C-5","time":2},{"key":"D-4","time":227},{"key":"B-4","time":241},{"key":"D-5","time":19},{"key":"D-4","time":210},{"key":"B-4","time":240},{"key":"D-5","time":12},{"key":"D-4","time":229},{"key":"A-4","time":250},{"key":"C-5","time":2},{"key":"D-4","time":208},{"key":"G-4","time":279},{"key":"B-4","time":11},{"key":"D-4","time":199},{"key":"A-4","time":291},{"key":"Fs-4","time":2},{"key":"D-4","time":227},{"key":"E-4","time":310},{"key":"G-4","time":10},{"key":"D-4","time":230},{"key":"E-4","time":251},{"key":"G-4","time":12},{"key":"D-4","time":217},{"key":"A-4","time":241},{"key":"Fs-4","time":11},{"key":"D-4","time":228},{"key":"B-4","time":240},{"key":"G-4","time":13},{"key":"D-4","time":218},{"key":"G-4","time":261},{"key":"B-4","time":2},{"key":"D-4","time":416},{"key":"Fs-4","time":622},{"key":"A-4","time":11},{"key":"Fs-4","time":199},{"key":"A-4","time":2},{"key":"D-4","time":567}]`},
@@ -79,6 +82,24 @@ window.onload = () => {
     $('.key').mousedown((target) => {
         var audio = $(target.target).attr('id');
         play_audio(audio);
+    });
+
+    $('.synth-type').click((target) => {
+        let instrument = $(target.target).attr('id');
+        piano = Synth.createInstrument(instrument);
+        $('#time-slider').val(2);
+        setTime(2);
+
+        if (instrument === 'acoustic') {
+            Synth.setSampleRate(44100);
+            return;
+        } else if (instrument == 'edm') {
+            Synth.setSampleRate(44100);
+            $('#time-slider').val(0.5);
+            setTime(0.5);
+        }
+
+        Synth.setSampleRate(10000);
     })
     
     // Handler for playing notes with the keyboard; only plays for valid mapped keys
@@ -92,13 +113,34 @@ window.onload = () => {
         }
     };
 
+    $('.help-bar').click((target) => {
+        var bar = $(target.target);
+
+        bar.css({
+            "color": "rgb(52, 53, 58)",
+            "background-color": "rgb(211, 211, 211)",
+        });
+        setTimeout(() => {
+            bar.css({
+                "color": "rgb(211, 211, 211)",
+                "background-color": "rgb(52, 53, 58)",
+                "border-radius": "7px"
+            });
+        }, 150);
+
+    })
+
     piano = Synth.createInstrument('piano');
     Synth.setVolume(0.5);
+    Synth.setSampleRate(10000);
+    noteLength = 2;
 
     for (const song of songs) {
         addRecordingToList(song.name, song.data);
     }
 
+    $('#info').css('visibility', 'visible');
+    enteredRecordingName = "";
     $(".list-container").scrollTop($(".list-container")[0].scrollHeight);
 } // end window.onload
 
@@ -114,6 +156,11 @@ function setVolume(newLevel) {
     $("#volume-value").text(label);
 } // end setVolume
 
+function setTime(length) {
+    noteLength = length;
+    $("#time-value").text(length);
+}
+
 function play_audio(id) {
     // Dynamically select audio files based on which area on image map/keyboard
     // was clicked. Id's on image map correspond to the file names
@@ -125,7 +172,7 @@ function play_audio(id) {
     }
 
     let note = id.split("-");
-    piano.play(sharpSwitch(note[0]), note[1], 1.5);
+    piano.play(sharpSwitch(note[0]), note[1], noteLength);
 
     $(`#${id}`).addClass('pressed');
     setTimeout(() => {
@@ -137,17 +184,15 @@ function play_audio(id) {
 // Displays the 'Recording' tag at the top right of the piano 
 function startRecording() {
     if (!playing) {
-        if (recordingName === "") {
-            setInfo(`Enter a Recording Name Below!`, "black")
+        if (enteredRecordingName === "") {
+            setInfo(`Enter a Recording Name Below!`, "white")
             return;
-        } else if (Object.keys(savedRecordings).includes(recordingName)) {
-            setInfo(`"${recordingName}" already exists, enter different name`, "black");
+        } else if (Object.keys(savedRecordings).includes(enteredRecordingName)) {
+            setInfo(`"${enteredRecordingName}" already exists, enter different name`, "white");
             return;
         }
         setInfo("Recording", "red");
-        // $("#saved").css('visibility', 'hidden');
-        // $("#saved").text(`Loaded Recording: `);
-        // $("#recording").css({'visibility': 'visible'})
+
         savedRecording = [];
         intervalStart = new Date();
         recordingStart = intervalStart;
@@ -162,10 +207,10 @@ function stopRecording() {
 
         // If the recording is empty, don't signify that there's a saved recording
         if (!savedRecording.length) {
-            setInfo("Empty Recording", "black")
+            setInfo("Empty Recording", "white")
         } else {
-            setInfo(`Loaded Recording: ${recordingName}`, "black")
-            addRecordingToList(recordingName, JSON.stringify(savedRecording));
+            setInfo(`Loaded Recording: ${enteredRecordingName}`, "white")
+            addRecordingToList(enteredRecordingName, JSON.stringify(savedRecording));
             $(".list-container").scrollTop($(".list-container")[0].scrollHeight);
         }
     } else if (playing) {
@@ -195,8 +240,7 @@ function playRecording() {
 function playNextNote(note) {
     setTimeout(() => {
         if (pause) {
-            // $("#playing").css('visibility', 'hidden');
-            // $("#saved").css('visibility', 'visible');
+            setInfo(`Loaded Recording: ${loadedRecordingName}`, "white");
             playing = false;
             return;
         }
@@ -207,9 +251,7 @@ function playNextNote(note) {
             playNextNote(copiedRecording.shift())
         } else {
             setTimeout(() => {
-                // $("#playing").css('visibility', 'hidden');
-                // $("#saved").css('visibility', 'visible');
-                setInfo(`Loaded Recording: ${recordingName}`, "black")
+                setInfo(`Loaded Recording: ${loadedRecordingName}`, "white")
                 playing = false;
             }, 300);
             
@@ -218,7 +260,7 @@ function playNextNote(note) {
 } // end playNextNote()
 
 function updateRecordingName(name) {
-    recordingName = name;
+    enteredRecordingName = name;
 } 
 
 // Adds the current recording to the list of saved recordings
@@ -257,10 +299,13 @@ function updateLoadedRecording(name, id) {
                                 'background-color': 'rgb(116, 116, 201)',
                                 'color': 'white'
                                 });
+
         savedRecording = JSON.parse(savedRecordings[name]);
-        recordingName = name;
-        
-        setInfo(`Loaded Recording: ${name}`, "black");
+
+        loadedRecordingName = name;
+        enteredRecordingName = "";
+
+        setInfo(`Loaded Recording: ${loadedRecordingName}`, "white");
     }
 }
 
