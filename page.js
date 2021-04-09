@@ -22,14 +22,9 @@ var copiedRecording = [];
 var noteLength;
 
 var songs = [
+    {name: "goBlue", data: `[{"key":"E-4","time":602},{"key":"C-4","time":880},{"key":"D-4","time":349},{"key":"E-4","time":401},{"key":"C-4","time":379},{"key":"D-4","time":401},{"key":"E-4","time":360},{"key":"F-4","time":419},{"key":"D-4","time":772},{"key":"E-4","time":389},{"key":"F-4","time":383},{"key":"D-4","time":377},{"key":"E-4","time":411},{"key":"F-4","time":399},{"key":"G-4","time":401},{"key":"A-4","time":879},{"key":"E-4","time":630},{"key":"E-4","time":211},{"key":"F-4","time":380},{"key":"C-4","time":430},{"key":"D-4","time":389},{"key":"E-4","time":411},{"key":"D-4","time":739},{"key":"C-4","time":391},{"key":"G-4","time":452}]`},
     {name: "odeToJoy", data: `[{"key":"G-4","time":743},{"key":"B-4","time":21},{"key":"D-4","time":219},{"key":"G-4","time":241},{"key":"B-4","time":19},{"key":"D-4","time":219},{"key":"A-4","time":242},{"key":"C-5","time":2},{"key":"D-4","time":227},{"key":"B-4","time":241},{"key":"D-5","time":19},{"key":"D-4","time":210},{"key":"B-4","time":240},{"key":"D-5","time":12},{"key":"D-4","time":229},{"key":"A-4","time":250},{"key":"C-5","time":2},{"key":"D-4","time":208},{"key":"G-4","time":279},{"key":"B-4","time":11},{"key":"D-4","time":199},{"key":"A-4","time":291},{"key":"Fs-4","time":2},{"key":"D-4","time":227},{"key":"E-4","time":310},{"key":"G-4","time":10},{"key":"D-4","time":230},{"key":"E-4","time":251},{"key":"G-4","time":12},{"key":"D-4","time":217},{"key":"A-4","time":241},{"key":"Fs-4","time":11},{"key":"D-4","time":228},{"key":"B-4","time":240},{"key":"G-4","time":13},{"key":"D-4","time":218},{"key":"G-4","time":261},{"key":"B-4","time":2},{"key":"D-4","time":416},{"key":"Fs-4","time":622},{"key":"A-4","time":11},{"key":"Fs-4","time":199},{"key":"A-4","time":2},{"key":"D-4","time":567}]`},
     {name: "office", data: `[{"key":"A-4","time":711},{"key":"C-5","time":8},{"key":"F-4","time":201},{"key":"C-5","time":168},{"key":"A-4","time":7},{"key":"A-4","time":705},{"key":"C-5","time":7},{"key":"F-4","time":201},{"key":"A-4","time":192},{"key":"C-5","time":7},{"key":"E-4","time":201},{"key":"A-4","time":216},{"key":"C-5","time":7},{"key":"C-5","time":769},{"key":"A-4","time":0},{"key":"E-4","time":176},{"key":"D-5","time":272},{"key":"A-4","time":7},{"key":"D-4","time":193},{"key":"D-5","time":232},{"key":"A-4","time":7},{"key":"D-5","time":713},{"key":"A-4","time":15},{"key":"D-4","time":185},{"key":"As-4","time":215},{"key":"G-4","time":8},{"key":"G-4","time":400},{"key":"As-4","time":8},{"key":"G-4","time":376},{"key":"As-4","time":8},{"key":"A-4","time":200},{"key":"G-4","time":176},{"key":"A-4","time":208},{"key":"F-4","time":216}]`},
-    {name: "test1", data: `[{"key":"A-4","time":711}]`},
-    {name: "test2", data: `[{"key":"A-4","time":711}]`},
-    {name: "test3", data: `[{"key":"A-4","time":711}]`},
-    {name: "test4", data: `[{"key":"A-4","time":711}]`},
-    {name: "test5", data: `[{"key":"A-4","time":711}]`},
-    {name: "test6", data: `[{"key":"A-4","time":711}]`},
 ]
 
 var savedRecordings = {
