@@ -222,7 +222,7 @@ function playRecording() {
         if (!recording) {
             if (copiedRecording.length) {
                 playing = true;
-                setInfo("Playing", "green");
+                setInfo("Playing", "white");
                 playNextNote(copiedRecording.shift());
             } 
         }
