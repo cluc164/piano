@@ -75,10 +75,6 @@ body {
     margin: auto;
 }
 
-input.middle:focus {
-    
-}
-
 #volume-slider, #time-slider {
     -webkit-appearance: none;
     height: 5px;
@@ -264,10 +260,6 @@ input.middle:focus {
     font-size: 30;
     font-weight: bolder;
     margin: auto;
-}
-
-#info {
-    
 }
 
 .saved-bar {
