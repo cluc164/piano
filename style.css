@@ -1,0 +1,290 @@
+/* CONTAINERS AND TITLE */
+body {
+    cursor: default;
+    background-color: rgb(201, 201, 201);
+}
+
+.title {
+    text-align: center;
+    font-size: 40;
+    font-weight: bold;
+}
+
+.piano-container {
+    width: 900px;
+    height: fit-content;
+    margin: auto;
+
+    background-color: rgb(52, 53, 58);
+
+    border-radius: 5px 5px 0 0;
+}
+
+.recording-container {
+    width: 900px;
+    height: fit-content;
+    margin: auto;
+
+    background-color: rgb(100, 100, 105);
+}
+
+
+.saved-container {
+    height: 210px;
+    width: 450px;
+    margin:auto;
+    border-bottom: 30px solid transparent;
+}
+
+.list-container {
+    background-color: white;
+    border-color: rgb(94, 96, 106);
+    overflow-y: auto;
+    height: 165px;
+    border-radius: 5px;
+}
+
+/* KEYBOARD CONTROLS */
+.piano-top {
+    width: 100%;
+    height: 90px;
+
+    border-bottom: 2px solid black;
+}
+
+.volume-bar {
+    width: 200px;
+    height: 80px;
+
+    margin: auto;
+}
+
+#volume-slider {
+    width: 100%;
+    margin: auto;
+    margin-top: 5px;
+}
+
+#volume-slider {
+    -webkit-appearance: none;
+    height: 5px;
+    background: #eeeeee;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #fdfdfd;
+    border-radius:50px;
+    cursor: pointer;
+}
+
+#volume-value, #volume-label {
+    margin: auto;
+    margin-top: 5px;
+    font-size: x-large;
+    font-weight: bold;
+    width: fit-content;
+    color:rgb(201, 201, 201);
+}
+
+/* KEYBOARD KEYS */
+.piano-keys {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    }
+
+.naturals {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+}
+
+.sharps {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+}
+
+.key {
+    z-index: 4;
+    width: 75px;
+    height: 240px;
+
+    position: relative;
+    float: left;
+    
+    background-color: white;
+
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0 0 5px 5px;
+
+    cursor: pointer;
+}
+
+.sharp_key {
+    z-index: 5;
+    position: relative;
+    float: left;
+    display: block;
+    float: left;
+    width: 50px;
+    height: 150px;
+    background-color: black;
+    border-radius: 0 0 5px 5px;
+    border-width: 0px;
+}
+
+
+.key.pressed {
+    background-color: rgb(94, 94, 245);
+}
+
+.key-label {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    left: 40%;
+    bottom: 10px;
+}
+
+.key-label.sharp {
+    color: rgb(255, 255, 255);
+}
+
+.sharp_key.Cs-4 {
+    left: 53px;
+}
+
+.sharp_key.Ds-4 {
+    left: 80px;
+}
+
+.sharp_key.Fs-4 {
+    left: 183px;
+}
+
+.sharp_key.Gs-4 {
+    left: 210px;
+}
+
+.sharp_key.As-4 {
+    left: 237px;
+}
+
+.sharp_key.Cs-5 {
+    left: 340px;
+}
+
+.sharp_key.Ds-5 {
+    left: 367px;
+}
+
+/* RECORDING CONTROLS */
+.buttonImage{
+    width: 65px;
+    height: 65px;
+}
+
+.buttonImage img{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.buttons button {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    
+    margin-top: 10px;
+
+    cursor: pointer;
+}
+
+.buttons button:focus {
+    outline: none;
+}
+
+.buttons {
+    position:relative;
+    text-align: center;
+}
+
+.recording-label {
+    text-align: center;
+    font-size: 30;
+    font-weight: bolder;
+    margin: auto;
+}
+
+#recording {
+    color: red;
+}
+
+#playing {
+    color: rgb(64, 177, 64);
+    margin-top: -34px;
+}
+
+#saved {
+    color: rgb(216, 216, 216);
+    margin-top: -34px;
+}
+
+.saved-bar {
+    margin-top: 5px;
+}
+
+#saved-name {
+    margin-bottom: 5px;
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+}
+
+#recording-list {
+    list-style-type: none;
+    margin-top: 0;
+    padding: 0;
+}
+
+#recording-list .record-name {
+    font-size: x-large;
+    text-align: center;
+    color:rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="audiosynth.js"></script>
+        <script type="text/javascript" src="page.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <title>BasementPiano</title>
+        <link rel="icon" type="image/png" href="images/piano.png">
+    </head>
+
+    <header>
+    </header>
+
+    <body>
+        <div class="title">Basement Piano</div>
+        <br>
+        <div class="piano-container">
+            <div class="piano-top">
+                <div class="volume-bar">
+                    <div id="volume-label">Volume</div>
+                    <input id="volume-slider" class="volume" type="range" oninput=setVolume(this.value)>
+                    <div id="volume-value">50%</div>
+                </div>
+            </div>
+            <div class="piano-keys">
+                <div class="naturals">
+                    <div class="sharps">
+                        <div class="key sharp_key Cs-4" id="Cs-4"> <div class="key-label sharp" id="Cs-4">W</div> </div>
+                        <div class="key sharp_key Ds-4" id="Ds-4"> <div class="key-label sharp" id="Ds-4">E</div> </div>
+                        <div class="key sharp_key Fs-4" id="Fs-4"> <div class="key-label sharp" id="Fs-4">T</div> </div>
+                        <div class="key sharp_key Gs-4" id="Gs-4"> <div class="key-label sharp" id="Gs-4">Y</div> </div>
+                        <div class="key sharp_key As-4" id="As-4"> <div class="key-label sharp" id="As-4">U</div> </div>
+                        <div class="key sharp_key Cs-5" id="Cs-5"> <div class="key-label sharp" id="Cs-5">O</div> </div>
+                        <div class="key sharp_key Ds-5" id="Ds-5"> <div class="key-label sharp" id="Ds-5">P</div> </div>
+                    </div>
+                    <div class="key" id="C-4"> <div id="C-4" class="key-label">A</div> </div>
+                    <div class="key" id="D-4"> <div id="D-4" class="key-label">S</div> </div>
+                    <div class="key" id="E-4"> <div id="E-4" class="key-label">D</div> </div>
+                    <div class="key" id="F-4"> <div id="F-4" class="key-label">F</div> </div>
+                    <div class="key" id="G-4"> <div id="G-4" class="key-label">G</div> </div>
+                    <div class="key" id="A-4"> <div id="A-4" class="key-label">H</div> </div>
+                    <div class="key" id="B-4"> <div id="B-4" class="key-label">J</div> </div>
+                    <div class="key" id="C-5"> <div id="C-5" class="key-label">K</div> </div>
+                    <div class="key" id="D-5"> <div id="D-5" class="key-label">L</div> </div>
+                    <div class="key" id="E-5"> <div id="E-5" class="key-label">;</div> </div>
+                </div>
+            </div>
+        </div>
+        <div class="recording-container">
+            <div class="buttons">
+                <button onclick="playRecording()">
+                    <div class="buttonImage">
+                        <img src="images/playButton.png">
+                    </div>
+                </button>
+                <button onclick="stopRecording()">
+                    <div class="buttonImage">
+                        <img src="images/stopButton.png">
+                    </div>
+                </button>
+                <button onclick="startRecording()">
+                    <div class="buttonImage">
+                        <img src="images/recordButton.png">
+                    </div>
+                </button>
+            </div>
+            <div class="recording-label" id="info">To Record, Enter Song Name Below</div>
+            <!-- <div class="recording-label" id="recording">Recording</div>
+            <div class="recording-label" id="playing">Playing</div>
+            <div class="recording-label" id="saved">Recording Saved</div> -->
+            <div class="saved-container">
+                <div class="saved-bar">
+                    <input id="saved-name" placeholder="Enter a name for your recording..." oninput="updateRecordingName(this.value)">
+                </div>
+                <div class="list-container">
+                    <ul id="recording-list"></ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
